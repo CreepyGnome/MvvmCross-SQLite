@@ -27,5 +27,15 @@ namespace Cirrious.MvvmCross.Community.Plugins.Sqlite.Droid
             var filePath = Path.Combine(path, address);
             return new SQLiteConnection(filePath, options.StoreDateTimeAsTicks);
         }
+
+        public ISQLiteConnection CreateEx(string databasePath, bool storeDateTimeAsTicks)
+        {
+            return new SQLiteConnection(databasePath, storeDateTimeAsTicks);
+        }
+
+        public ISQLiteConnection CreateEx(string databasePath, int openFlags, bool storeDateTimeAsTicks = true)
+        {
+            return new SQLiteConnection(databasePath, (SQLiteOpenFlags)openFlags, storeDateTimeAsTicks);
+        }
     }
 }

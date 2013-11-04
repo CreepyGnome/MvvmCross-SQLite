@@ -27,6 +27,55 @@ namespace Cirrious.MvvmCross.Community.Plugins.Sqlite
     public interface ISQLiteConnectionFactoryEx
     {
         ISQLiteConnection CreateEx(string address, SQLiteConnectionOptions options = null);
+        /// <summary>
+        /// Creates a new ISQLiteConnection and opens a SQLite database specified by databasePath.
+        /// </summary>
+        /// <remarks>
+        /// This is a straight pass through to the underlying implementation of ISQLiteConnection. 
+        /// No modifications will be made to the values passed. This will allow access to the full 
+        /// SQLite3 functionality such as Temp Databases and In-Memory Databases to name a few. 
+        /// <para>
+        /// Note: This method is for advanced users, if you are not familiar with creating SQLiteConnections
+        /// via the SQLite-Net project then you should stick to the ISQLiteConnectionFactory.Create method.
+        /// </para>
+        /// </remarks>
+        /// <param name="databasePath">
+        /// Specifies the path to the database file.
+        /// </param>
+        /// <param name="storeDateTimeAsTicks">
+        /// Specifies whether to store DateTime properties as ticks (true) or strings (false). You
+        /// absolutely do want to store them as Ticks in all new projects. 
+        /// <para>
+        /// Default is true - see https://github.com/slodge/MvvmCross/issues/213#issuecomment-24610834
+        /// </para>
+        /// </param>
+        /// <returns>The newly created ISQLiteConnection</returns>
+        ISQLiteConnection CreateEx(string databasePath, bool storeDateTimeAsTicks = true);
+        /// <summary>
+        /// Constructs a new SQLiteConnection and opens a SQLite database specified by databasePath.
+        /// </summary>
+        /// <remarks>
+        /// This is a straight pass through to the underlying implementation of ISQLiteConnection. 
+        /// No modifications will be made to the values passed. This will allow access to the full 
+        /// SQLite3 functionality such as Temp Databases and In-Memory Databases to name a few. 
+        /// <para>
+        /// Note: This method is for advanced users, if you are not familiar with creating SQLiteConnections
+        /// via the SQLite-Net project then you should stick to the ISQLiteConnectionFactory.Create method.
+        /// </para>
+        /// </remarks>
+        /// <param name="databasePath">
+        /// Specifies the path to the database file.
+        /// </param>
+        /// <param name="openFlags">An int that represents the SQLiteOpenFlags that it will be cast to.</param>
+        /// <param name="storeDateTimeAsTicks">
+        /// Specifies whether to store DateTime properties as ticks (true) or strings (false). You
+        /// absolutely do want to store them as Ticks in all new projects. 
+        /// <para>
+        /// Default is true - see https://github.com/slodge/MvvmCross/issues/213#issuecomment-24610834
+        /// </para>
+        /// </param>
+        /// <returns>The newly created ISQLiteConnection</returns>
+        ISQLiteConnection CreateEx(string databasePath, int openFlags, bool storeDateTimeAsTicks = true);
     }
 
     public interface ISQLiteConnectionFactory
